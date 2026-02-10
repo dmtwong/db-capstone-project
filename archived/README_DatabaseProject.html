@@ -11,7 +11,7 @@
 
 <meta name="author" content="David W." />
 
-<meta name="date" content="2026-02-09" />
+<meta name="date" content="2026-02-10" />
 
 <title>readme_databaseProject</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">readme_databaseProject</h1>
 <h4 class="author">David W.</h4>
-<h4 class="date">2026-02-09</h4>
+<h4 class="date">2026-02-10</h4>
 
 </div>
 
@@ -382,9 +382,33 @@ to use SQLAlchemy)</p>
 </div>
 <div id="database-schema" class="section level2">
 <h2>Database Schema</h2>
-<p>The database follows a relational model centered around customer
-orders, loyalty tracking maybe added on top of the project requirement
-if it is allowed.</p>
+<p>Requirement of Little lemon to build the relational database system
+in mysql and possibly handling booking data as well:</p>
+<div id="bookings-to-store-information-about-booked-tables-in-the-restaurant-including-booking-id-date-and-table-number." class="section level5">
+<h5><em>Bookings</em>: To store information about booked tables in the
+restaurant including booking id, date and table number.</h5>
+</div>
+<div id="orders-to-store-information-about-each-order-such-as-order-date-quantity-and-total-cost." class="section level5">
+<h5><em>Orders</em>: To store information about each order such as order
+date, quantity and total cost.</h5>
+</div>
+<div id="order-delivery-status-to-store-information-about-the-delivery-status-of-each-order-such-as-delivery-date-and-status." class="section level5">
+<h5><em>Order</em> delivery status: To store information about the
+delivery status of each order such as delivery date and status.</h5>
+</div>
+<div id="menu-to-store-information-about-cuisines-starters-courses-drinks-and-desserts." class="section level5">
+<h5><em>Menu</em>: To store information about cuisines, starters,
+courses, drinks and desserts.</h5>
+</div>
+<div id="customer-to-store-information-about-the-customer-names-and-contact-details." class="section level5">
+<h5><em>Customer</em>: To store information about the customer names and
+contact details.</h5>
+</div>
+<div id="staff-including-role-and-salary." class="section level5">
+<h5><em>Staff</em>: Including role and salary.</h5>
+<p>Archived: (for now) The database follows a relational model centered
+around customer orders, loyalty tracking maybe added on top of the
+project requirement if it is allowed.</p>
 <p>Customers: customer infor and contact, may include visit frequency,
 and lifetime spending.</p>
 <p>Items: Menu management (ENUM constraints for categories and
@@ -392,7 +416,8 @@ availability (optional))</p>
 <p>Orders: The central transaction table, with automated payment status
 flags as optional.</p>
 <p>Order_Items: Associative table handling many-to-many relationships,
-and historical price snapshots (optional).</p>
+and historical price snapshots (optional)</p>
+</div>
 </div>
 <div id="setup-instructions" class="section level2">
 <h2>Setup Instructions</h2>
@@ -401,9 +426,15 @@ and historical price snapshots (optional).</p>
 <li><p>Dependencies: mysql-connector-python sqlalchemy
 python-dotenv</p></li>
 <li><p>Database Initialization Run the SQL scripts located in the /sql
-folder in the following order: v1_initial_schema.sql (Customers and
-Items) v2_orders_setup.sql (Orders and Order_Items)</p></li>
+folder in the following order:</p></li>
 </ol>
+<ul>
+<li>One script or each table, starting from tables that with no foreign
+keys, naming convention stick to
+v*_num*_<em>tbl_name</em>_schema.sql</li>
+</ul>
+<p>Archived: v1_initial_schema.sql (Customers and Items)
+v2_orders_setup.sql (Orders and Order_Items)</p>
 </div>
 <div id="git-workflow-for-contributors" class="section level2">
 <h2>Git Workflow for Contributors</h2>

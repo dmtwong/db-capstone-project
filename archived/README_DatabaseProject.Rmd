@@ -1,8 +1,10 @@
 ---
 title: "readme_databaseProject"
 author: "David W."
-date: "2026-02-09"
-output: html_document
+date: "2026-02-10"
+output: 
+  html_document: 
+    keep_md: true
 keep_md: default
 ---
 
@@ -28,6 +30,21 @@ Version Control: Git (Feature Branch Workflow)
 
 ## Database Schema
 
+Requirement of Little lemon to build the relational database system in mysql and possibly handling booking data as well: 
+
+##### *Bookings*: To store information about booked tables in the restaurant including booking id, date and table number.
+
+##### *Orders*: To store information about each order such as order date, quantity and total cost.
+
+##### *Order* delivery status: To store information about the delivery status of each order such as delivery date and status.
+
+##### *Menu*: To store information about cuisines, starters, courses, drinks and desserts.
+
+##### *Customer*: To store information about the customer names and contact details.
+
+##### *Staff*: Including role and salary.
+
+Archived: (for now)
 The database follows a relational model centered around customer orders, loyalty tracking maybe added on top of the project requirement if it is allowed.
 
 Customers: customer infor and contact, may include visit frequency, and lifetime spending.
@@ -36,7 +53,7 @@ Items: Menu management (ENUM constraints for categories and availability (option
 
 Orders: The central transaction table, with automated payment status flags as optional.
 
-Order_Items: Associative table handling many-to-many relationships, and historical price snapshots (optional).
+Order_Items: Associative table handling many-to-many relationships, and historical price snapshots (optional)
 
 ## Setup Instructions
 1. Prerequisites:
@@ -49,6 +66,10 @@ python-dotenv
 
 3. Database Initialization
 Run the SQL scripts located in the /sql folder in the following order:
+
+- One script or each table, starting from tables that with no foreign keys, naming convention stick to v*_num*_*tbl_name*_schema.sql
+
+Archived:
 v1_initial_schema.sql (Customers and Items)
 v2_orders_setup.sql (Orders and Order_Items)
 
