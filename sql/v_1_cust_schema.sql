@@ -3,7 +3,7 @@ USE littleLemonProject;
 DROP TABLE if exists Cust; 
 
 CREATE TABLE Cust(
-    cust_id VARCHAR(11) PRIMARY KEY,
+    cust_id VARCHAR(11) NOT NULL PRIMARY KEY,
     cust_name VARCHAR(50) NOT NULL,
     phone VARCHAR(20),
     email VARCHAR(100) NULL
