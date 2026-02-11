@@ -1,7 +1,7 @@
 ---
 title: "readme_databaseProject"
 author: "David W."
-date: "2026-02-10"
+date: "2026-02-11"
 output: 
   html_document: 
     keep_md: true
@@ -34,15 +34,17 @@ Requirement of Little lemon to build the relational database system in mysql and
 
 ##### *Bookings*: To store information about booked tables in the restaurant including booking id, date and table number.
 
-##### *Orders*: To store information about each order such as order date, quantity and total cost.
+##### *Orders*: To store information about each order such as order date, quantity and costs (including delivery cost).
 
-##### *Order* delivery status: To store information about the delivery status of each order such as delivery date and status.
+##### *Order delivery status*: To store information about the delivery status of each order such as delivery date and status.
 
-##### *Menu*: To store information about cuisines, starters, courses, drinks and desserts.
+##### *menus*: To store information about cuisine and which set of menu items.
 
-##### *Customer*: To store information about the customer names and contact details.
+##### *menuitems*: To store information about set of starters, courses, drinks, desserts and sides.
 
-##### *Staff*: Including role and salary.
+##### *cust*: To store information about the customer names and contact details (phone and email).
+
+##### *staff*: Including role and salary.
 
 Archived: (for now)
 The database follows a relational model centered around customer orders, loyalty tracking maybe added on top of the project requirement if it is allowed.
