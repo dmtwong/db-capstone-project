@@ -11,7 +11,7 @@
 
 <meta name="author" content="David W." />
 
-<meta name="date" content="2026-02-11" />
+<meta name="date" content="2026-02-12" />
 
 <title>readme_databaseProject</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">readme_databaseProject</h1>
 <h4 class="author">David W.</h4>
-<h4 class="date">2026-02-11</h4>
+<h4 class="date">2026-02-12</h4>
 
 </div>
 
@@ -433,12 +433,13 @@ python-dotenv</p></li>
 folder in the following order:</p></li>
 </ol>
 <ul>
-<li>One script or each table, starting from tables that with no foreign
-keys, naming convention stick to
-v*_num*_<em>tbl_name</em>_schema.sql</li>
+<li><p>One script in /schema for each table, starting from tables that
+with no foreign keys, naming convention stick to
+v*_num*_<em>tbl_name</em>_schema.sql</p></li>
+<li><p>run scripts in /staging to create the schema for raw table, then
+populate each table from it after loading the data from
+data/landing/</p></li>
 </ul>
-<p>Archived: v1_initial_schema.sql (Customers and Items)
-v2_orders_setup.sql (Orders and Order_Items)</p>
 </div>
 <div id="git-workflow-for-contributors" class="section level2">
 <h2>Git Workflow for Contributors</h2>
