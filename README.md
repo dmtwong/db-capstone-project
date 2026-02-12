@@ -1,7 +1,7 @@
 ---
 title: "readme_databaseProject"
 author: "David W."
-date: "2026-02-11"
+date: "2026-02-12"
 output: 
   html_document: 
     keep_md: true
@@ -69,11 +69,10 @@ python-dotenv
 3. Database Initialization
 Run the SQL scripts located in the /sql folder in the following order:
 
-- One script or each table, starting from tables that with no foreign keys, naming convention stick to v*_num*_*tbl_name*_schema.sql
+- One script in /schema for each table, starting from tables that with no foreign keys, naming convention stick to v*_num*_*tbl_name*_schema.sql
 
-Archived:
-v1_initial_schema.sql (Customers and Items)
-v2_orders_setup.sql (Orders and Order_Items)
+- run scripts in /staging to create the schema for raw table, then populate each table from it after loading the data from data/landing/
+
 
 ## Git Workflow for Contributors
 1. Branching: 
