@@ -2,8 +2,9 @@ CREATE TABLE OrderDeliveryStatus (
     delivery_id INT PRIMARY KEY AUTO_INCREMENT,
     delivery_date DATE,
     delivery_status ENUM('Pending', 'Cancelled', 'Delivered') DEFAULT 'Delivered',
-    OrderID VARCHAR(20) NOT NULL,
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+    order_id_pk INT NOT NULL,
+    -- OrderID VARCHAR(20) NOT NULL,
+    FOREIGN KEY (order_id_pk) REFERENCES Orders(order_id_pk)
 )
 
 /*

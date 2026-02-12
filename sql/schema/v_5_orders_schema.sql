@@ -4,7 +4,8 @@
 -- group_by(df_1, `Order ID`) %>% summarise(distinct_count = n_distinct(`Delivery Date`)) %>% arrange(desc(distinct_count)) only has 1 de date for each order
 
 CREATE TABLE Orders (
-    OrderID VARCHAR(11) PRIMARY KEY,
+	order_id_pk INT PRIMARY KEY AUTO_INCREMENT,
+    OrderID VARCHAR(11),
     OrderDate DATE NOT NULL,
     Quantity INT NOT NULL,
     Cost DECIMAL(10, 2),          
