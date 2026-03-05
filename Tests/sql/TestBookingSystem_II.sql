@@ -17,7 +17,7 @@ SELECT * FROM Bookings;
 -- TEST CASE: Double Booking
 CALL AddBooking(5, '99-999-9999', '2022-10-10', 1); -- First one: Success (Commit)
 CALL AddBooking(6, '98-765-4321', '2022-10-10', 1); -- Second one: Fails (Rollback)
-CALL AddBooking(7, '98-765-4321', '2022-10-10', 5); -- Third one: Still Fails (Rollback) 
+CALL AddBooking(7, '98-765-4321', '2022-10-10', 5); -- Third one: Fails (Rollback) 
 CALL AddBooking(8, '98-765-4321', '2022-10-10', 2); -- Fouth one: Success (Commit)
 
 -- VERIFICATION
@@ -31,6 +31,24 @@ SELECT * FROM Bookings WHERE booking_date = '2022-10-10' AND table_number = 5;
 
 -- This should only return 1 row. If the add for case 4 failed, you'd see 0.
 SELECT * FROM Bookings WHERE booking_date = '2022-10-10' AND table_number = 2;
+
+# 2) Testing for UpdateBooking: (Recap) UpdateBooking(IN in_booking_id INT, IN in_booking_date DATE)
+SELECT * FROM Bookings;
+-- TEST CASE on records created from above test cases (after case 1 and 4 for addBooking): 
+-- UPDATE Booking on a fail case (exist of booking for same table on new date) 
+-- UPDATE Booking on two succeed case (new date of booking has no conflits) 
+CALL UpdateBooking(8, '2022-10-11'); -- First one: Update Fails (Rollback) 
+SELECT * FROM Bookings WHERE booking_date = '2022-10-11';
+SELECT * FROM Bookings WHERE booking_id = 8;
+SELECT * FROM Bookings WHERE booking_date = '2022-10-12';
+CALL UpdateBooking(8, '2022-10-12'); -- Second: Update Success (Commit)
+SELECT * FROM Bookings WHERE booking_id = 8;
+SELECT * FROM Bookings WHERE booking_date = '2022-10-12';
+
+SELECT * FROM Bookings WHERE booking_date = '2022-11-12';
+CALL UpdateBooking(8, '2022-11-12'); -- Third: Update Success (Commit)
+SELECT * FROM Bookings WHERE booking_id = 8;
+SELECT * FROM Bookings WHERE booking_date = '2022-11-12';
 
 
 
