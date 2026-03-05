@@ -50,5 +50,22 @@ CALL UpdateBooking(8, '2022-11-12'); -- Third: Update Success (Commit)
 SELECT * FROM Bookings WHERE booking_id = 8;
 SELECT * FROM Bookings WHERE booking_date = '2022-11-12';
 
+# 3) Testing for CancelBooking: (Recap) CancelBooking(IN in_booking_id INT)
+-- TEST CASE on records created and then updated following scuccessfully runned above test cases:
+-- Cancel Booking on 2 succeed case and 1 fail case (exist of booking for same table on new date) 
+-- UPDATE Booking on two succeed case (new date of booking has no conflits) 
+SELECT * FROM Bookings WHERE booking_id in (5,8);
+CALL CancelBooking(8); # Case 1: Expect to be succeed
 
+SELECT * FROM Bookings WHERE booking_id in (5,8);
+CALL CancelBooking(5); # Case 2: Expect to be succeed
+SELECT * FROM Bookings WHERE booking_id in (5,8);
 
+SELECT COUNT(*) FROM Bookings; # This number should remain the same after the running the next test case
+CALL CancelBooking(8); # Case : Expect to be fail; double cancel not allowed but affect no other records
+SELECT COUNT(*) FROM Bookings; # This number should remain the same after the running the next test case
+
+-- clean up cust last (but not least)
+SELECT * FROM cust WHERE cust_id in ('99-999-9999','98-765-4321');
+DELETE FROM cust WHERE cust_id in ('99-999-9999','98-765-4321');
+SELECT * FROM cust WHERE cust_id in ('99-999-9999','98-765-4321');
