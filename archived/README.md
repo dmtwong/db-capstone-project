@@ -1,7 +1,7 @@
 ---
 title: "readme_databaseProject"
 author: "David W."
-date: "2026-02-12"
+date: "2026-03-15"
 output: 
   html_document: 
     keep_md: true
@@ -12,67 +12,39 @@ keep_md: default
 A multi-phase project transitioning legacy restaurant booking system to a robust MySQL environment. Given the request, several aspects will be considered when engaging with this project:
 
 1. Maintaining consistency when updating code.
-
 2. Ensuring there are sufficient structures in place to save, alter and query data. 
-
 3. Ensuring there is a mechanism for displaying the data in a manner that is easily interpretable. 
-
 4. Checking that there is a front-end system for accessing and updating the data. 
+
+## Lessons Learned
+* **Atomicity:** Gained hands-on experience in managing database states; learned why "Insert-then-Check" patterns are superior for concurrency.
+* **Versioning:** Refined my Git workflow, moving from simple commits to a feature-branch system that mimics real-world collaborative development.
+* **Refactoring:** Learned the value of peer review by treating my earlier commits as "feedback" for subsequent improvements in logic.
+
+## Key Achievements
+- **Transactional Integrity:** Implemented ACID-compliant stored procedures to prevent double-bookings during high-concurrency requests.
+- **Defensive Engineering:** Designed secure procedures with parameter validation and explicit naming conventions to prevent SQL injection and logic errors.
+- **Test-Driven Design:** Built a comprehensive test suite (`TestBookingSystem_II.sql`) that validates system behavior across successful and conflicting booking states.
+- **Full Lifecycle Management:** Developed complete CRUD functionality for reservations, ensuring the database remains in a consistent state throughout every user interaction.
 
 ## Tech Stack
 Database: MySQL 8.0.45
 
-Language: Python 3.9.13
+Language: Python 3.8.8
 
-Database Drivers/API: mysql-connector-python (May consider switching to use SQLAlchemy)
+Database Drivers/API: mysql-connector-python
 
 Version Control: Git (Feature Branch Workflow)
 
-## Database Schema
-
-Requirement of Little lemon to build the relational database system in mysql and possibly handling booking data as well: 
-
-##### *Bookings*: To store information about booked tables in the restaurant including booking id, date and table number.
-
-##### *Orders*: To store information about each order such as order date, quantity and costs (including delivery cost).
-
-##### *Order delivery status*: To store information about the delivery status of each order such as delivery date and status.
-
-##### *menus*: To store information about cuisine and which set of menu items.
-
-##### *menuitems*: To store information about set of starters, courses, drinks, desserts and sides.
-
-##### *cust*: To store information about the customer names and contact details (phone and email).
-
-##### *staff*: Including role and salary.
-
-Archived: (for now)
-The database follows a relational model centered around customer orders, loyalty tracking maybe added on top of the project requirement if it is allowed.
-
-Customers: customer infor and contact, may include visit frequency, and lifetime spending.
-
-Items: Menu management (ENUM constraints for categories and availability (optional))
-
-Orders: The central transaction table, with automated payment status flags as optional.
-
-Order_Items: Associative table handling many-to-many relationships, and historical price snapshots (optional)
+## Database Architecture:
+Please see: Documentation/ER_diagram/png/little_lemon.png
 
 ## Setup Instructions
-1. Prerequisites:
-Ensure MySQL Server is running.
-
-2. Dependencies:
-mysql-connector-python 
-sqlalchemy 
-python-dotenv
-
-3. Database Initialization
-Run the SQL scripts located in the /sql folder in the following order:
-
-- One script in /schema for each table, starting from tables that with no foreign keys, naming convention stick to v*_num*_*tbl_name*_schema.sql
-
-- run scripts in /staging to create the schema for raw table, then populate each table from it after loading the data from data/landing/
-
+1. **Prerequisites:** Ensure MySQL Server is running.
+2. **Environment Setup:** setup `.env` and configure your database credentials.
+   *(Note: `.env` file is not commit for security, please create one for yourself)*
+3. **Initialization:** Execute SQL scripts in the `/sql` folder in dependency order (Schema -> Staging -> Populating).
+4. **Testing:** Run the scripts in `/Tests/sql` to verify the system logic.
 
 ## Git Workflow for Contributors
 1. Branching: 
@@ -82,4 +54,6 @@ Create a feature branch from main (e.g., feat/add-reporting-query).
 
 3. Merge: 
 Open a Pull Request for self-review before merging into main.
+
+
 
