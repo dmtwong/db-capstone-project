@@ -11,7 +11,7 @@
 
 <meta name="author" content="David W." />
 
-<meta name="date" content="2026-02-12" />
+<meta name="date" content="2026-03-15" />
 
 <title>readme_databaseProject</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">readme_databaseProject</h1>
 <h4 class="author">David W.</h4>
-<h4 class="date">2026-02-12</h4>
+<h4 class="date">2026-03-15</h4>
 
 </div>
 
@@ -363,83 +363,70 @@ display: none;
 to a robust MySQL environment. Given the request, several aspects will
 be considered when engaging with this project:</p>
 <ol style="list-style-type: decimal">
-<li><p>Maintaining consistency when updating code.</p></li>
-<li><p>Ensuring there are sufficient structures in place to save, alter
-and query data.</p></li>
-<li><p>Ensuring there is a mechanism for displaying the data in a manner
-that is easily interpretable.</p></li>
-<li><p>Checking that there is a front-end system for accessing and
-updating the data.</p></li>
+<li>Maintaining consistency when updating code.</li>
+<li>Ensuring there are sufficient structures in place to save, alter and
+query data.</li>
+<li>Ensuring there is a mechanism for displaying the data in a manner
+that is easily interpretable.</li>
+<li>Checking that there is a front-end system for accessing and updating
+the data.</li>
 </ol>
+</div>
+<div id="lessons-learned" class="section level2">
+<h2>Lessons Learned</h2>
+<ul>
+<li><strong>Atomicity:</strong> Gained hands-on experience in managing
+database states; learned why “Insert-then-Check” patterns are superior
+for concurrency.</li>
+<li><strong>Versioning:</strong> Refined my Git workflow, moving from
+simple commits to a feature-branch system that mimics real-world
+collaborative development.</li>
+<li><strong>Refactoring:</strong> Learned the value of peer review by
+treating my earlier commits as “feedback” for subsequent improvements in
+logic.</li>
+</ul>
+</div>
+<div id="key-achievements" class="section level2">
+<h2>Key Achievements</h2>
+<ul>
+<li><strong>Transactional Integrity:</strong> Implemented ACID-compliant
+stored procedures to prevent double-bookings during high-concurrency
+requests.</li>
+<li><strong>Defensive Engineering:</strong> Designed secure procedures
+with parameter validation and explicit naming conventions to prevent SQL
+injection and logic errors.</li>
+<li><strong>Test-Driven Design:</strong> Built a comprehensive test
+suite (<code>TestBookingSystem_II.sql</code>) that validates system
+behavior across successful and conflicting booking states.</li>
+<li><strong>Full Lifecycle Management:</strong> Developed complete CRUD
+functionality for reservations, ensuring the database remains in a
+consistent state throughout every user interaction.</li>
+</ul>
 </div>
 <div id="tech-stack" class="section level2">
 <h2>Tech Stack</h2>
 <p>Database: MySQL 8.0.45</p>
-<p>Language: Python 3.9.13</p>
-<p>Database Drivers/API: mysql-connector-python (May consider switching
-to use SQLAlchemy)</p>
+<p>Language: Python 3.8.8</p>
+<p>Database Drivers/API: mysql-connector-python</p>
 <p>Version Control: Git (Feature Branch Workflow)</p>
 </div>
-<div id="database-schema" class="section level2">
-<h2>Database Schema</h2>
-<p>Requirement of Little lemon to build the relational database system
-in mysql and possibly handling booking data as well:</p>
-<div id="bookings-to-store-information-about-booked-tables-in-the-restaurant-including-booking-id-date-and-table-number." class="section level5">
-<h5><em>Bookings</em>: To store information about booked tables in the
-restaurant including booking id, date and table number.</h5>
-</div>
-<div id="orders-to-store-information-about-each-order-such-as-order-date-quantity-and-costs-including-delivery-cost." class="section level5">
-<h5><em>Orders</em>: To store information about each order such as order
-date, quantity and costs (including delivery cost).</h5>
-</div>
-<div id="order-delivery-status-to-store-information-about-the-delivery-status-of-each-order-such-as-delivery-date-and-status." class="section level5">
-<h5><em>Order delivery status</em>: To store information about the
-delivery status of each order such as delivery date and status.</h5>
-</div>
-<div id="menus-to-store-information-about-cuisine-and-which-set-of-menu-items." class="section level5">
-<h5><em>menus</em>: To store information about cuisine and which set of
-menu items.</h5>
-</div>
-<div id="menuitems-to-store-information-about-set-of-starters-courses-drinks-desserts-and-sides." class="section level5">
-<h5><em>menuitems</em>: To store information about set of starters,
-courses, drinks, desserts and sides.</h5>
-</div>
-<div id="cust-to-store-information-about-the-customer-names-and-contact-details-phone-and-email." class="section level5">
-<h5><em>cust</em>: To store information about the customer names and
-contact details (phone and email).</h5>
-</div>
-<div id="staff-including-role-and-salary." class="section level5">
-<h5><em>staff</em>: Including role and salary.</h5>
-<p>Archived: (for now) The database follows a relational model centered
-around customer orders, loyalty tracking maybe added on top of the
-project requirement if it is allowed.</p>
-<p>Customers: customer infor and contact, may include visit frequency,
-and lifetime spending.</p>
-<p>Items: Menu management (ENUM constraints for categories and
-availability (optional))</p>
-<p>Orders: The central transaction table, with automated payment status
-flags as optional.</p>
-<p>Order_Items: Associative table handling many-to-many relationships,
-and historical price snapshots (optional)</p>
-</div>
+<div id="database-architecture" class="section level2">
+<h2>Database Architecture:</h2>
+<p>Please see: Documentation/ER_diagram/png/little_lemon.png</p>
 </div>
 <div id="setup-instructions" class="section level2">
 <h2>Setup Instructions</h2>
 <ol style="list-style-type: decimal">
-<li><p>Prerequisites: Ensure MySQL Server is running.</p></li>
-<li><p>Dependencies: mysql-connector-python sqlalchemy
-python-dotenv</p></li>
-<li><p>Database Initialization Run the SQL scripts located in the /sql
-folder in the following order:</p></li>
+<li><strong>Prerequisites:</strong> Ensure MySQL Server is running.</li>
+<li><strong>Environment Setup:</strong> setup <code>.env</code> and
+configure your database credentials. <em>(Note: <code>.env</code> file
+is not commit for security, please create one for yourself)</em></li>
+<li><strong>Initialization:</strong> Execute SQL scripts in the
+<code>/sql</code> folder in dependency order (Schema -&gt; Staging -&gt;
+Populating).</li>
+<li><strong>Testing:</strong> Run the scripts in <code>/Tests/sql</code>
+to verify the system logic.</li>
 </ol>
-<ul>
-<li><p>One script in /schema for each table, starting from tables that
-with no foreign keys, naming convention stick to
-v*_num*_<em>tbl_name</em>_schema.sql</p></li>
-<li><p>run scripts in /staging to create the schema for raw table, then
-populate each table from it after loading the data from
-data/landing/</p></li>
-</ul>
 </div>
 <div id="git-workflow-for-contributors" class="section level2">
 <h2>Git Workflow for Contributors</h2>
